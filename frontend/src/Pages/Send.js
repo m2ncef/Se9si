@@ -11,7 +11,7 @@ export default function Page() {
   }
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch(`http://localhost:3001/user/${username}`)
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/user/${username}`)
       const data = await res.json()
       document.title = `Se9si | @${data.username} ✨`
       setData(data)
@@ -20,7 +20,7 @@ export default function Page() {
   }, [])
   async function PostData() {
     var data;
-    await fetch(`http://localhost:3001/PostQuestion/${username}`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_API}/PostQuestion/${username}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

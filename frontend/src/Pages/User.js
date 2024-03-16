@@ -8,7 +8,7 @@ export default function Page() {
     const [data, setData] = useState([])
     useEffect(()=>{
         async function fetchData(){
-            const res = await fetch(`http://localhost:3001/User/${username}`)
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/User/${username}`)
             const data = await res.json()
             setData(data)
             document.title = `Se9si | @${data.username} ✨`
