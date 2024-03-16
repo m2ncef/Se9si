@@ -16,11 +16,11 @@ mongoose.connect(process.env.MONGODB)
     })
     .catch(() => console.log("Error connection to db"))
 
-app.use(cors({
-    origin: '*',
-    credentials: true,
-    optionSuccessStatus: 200,
-}))
+    app.use(cors({
+        origin: '*',
+        credentials: true,
+        optionSuccessStatus: 200,
+    }));
 app.use(express.json())
 
 app.get("/", (req, res) => {
