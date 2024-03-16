@@ -2,13 +2,49 @@ import React, { useEffect, useState } from 'react'
 
 export default function () {
     const [user, setUser] = useState('')
-    useEffect(()=>{
-        async function fetchData(){
-            const res = await fetch(`https://se9si-api.vercel.app/user/${user}`)
-            if(res.ok) {
-                console.log('found')
-                const data = await res.json()
-                return
+    const [data, setData] = useState([])
+    useEffect(() => {
+        async function fetchData() {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/user/${user}`)
+            const data = await res.json()
+            setData(data)
+            if (data) {
+                console.log("found")
+                document.querySelector(".start-container > div").innerHTML += '<input type="number" id="pin" maxlength="4" placeholder="Your Pin (eg: 1234)"/>'
+                document.querySelector(".start-container > div > input").value = user
+                document.querySelector(".start-container > button").textContent = "Done!"
+                document.querySelector(".start-container > button").addEventListener('click', async () => {
+                    if (document.querySelector("#pin").value == data.pin) {
+                        document.querySelector("#pin").style.border = "2px solid green"
+                        document.querySelector(".start-container > div > input").style.border = "2px solid green"
+                        localStorage.setItem("UserID", data._id)
+                        window.location.href = `/user/${data.username}`
+                    }
+                    else {
+                        document.querySelector("#pin").value = ""
+                        document.querySelector("#pin").style.border = "2px solid red"
+                    }
+                })
+            } else {
+                console.log("not found")
+                document.querySelector(".start-container > div").innerHTML += '<input type="number" id="pin" maxlength="4" placeholder="Create a pin (eg: 1234)"/>'
+                document.querySelector(".start-container > div > input").value = user
+                document.querySelector(".start-container > button").textContent = "Done!"
+                document.querySelector(".start-container > button").addEventListener('click', async () => {
+                    await fetch(`${process.env.REACT_APP_BACKEND_API}/login`, {
+                        method: 'POST',
+                        body: {
+                            username: user,
+                            pin: document.querySelector("#pin").value
+                        }
+                    })
+                        .then(r => r.json())
+                        .then(data => {
+                            console.log(data)
+                            localStorage.setItem("UserID", data._id)
+                            // window.location.href = `/user/${data.username}`
+                        })
+                })
             }
         }
         fetchData()
@@ -16,8 +52,10 @@ export default function () {
     return (
         <div className='start-container'>
             <h2>Choose a username</h2>
-            <input type='text' placeholder='moncef'/>
-            <button onClick={()=>{setUser(document.querySelector(".start-container > input").value)}}>Done!</button>
+            <div>
+                <input type='text' placeholder='moncef' />
+            </div>
+            <button onClick={() => { setUser(document.querySelector(".start-container > div > input").value) }}>Next</button>
         </div>
     )
 }

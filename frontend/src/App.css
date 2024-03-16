@@ -241,11 +241,16 @@ body {
   gap: 1vh;
 }
 
-.start-container>* {
+.start-container>div>* {
   margin: 1vh;
 }
 
-.start-container>input {
+.start-container> div {
+  display: flex;
+  flex-direction: column;
+}
+
+.start-container>div>input {
   padding: 1.7vh;
   font-size: large;
   border: none;

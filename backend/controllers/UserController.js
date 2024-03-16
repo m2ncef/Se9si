@@ -74,12 +74,12 @@ const Login = async (req, res) => {
                 }
             ]
             await newUser.save()
-            res.json("Successfully signed.")
+            res.json(newUser)
             return
         }
         // LOGIN !!
         if (req.body.pin == client.pin) {
-            res.json("login successfully")
+            res.json(client)
         } else {
             res.json("wrong credentials, try again")
         }
