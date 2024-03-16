@@ -10,7 +10,7 @@ const User = require("./models/User");
 
 const app = express()
 
-mongoose.connect(process.env.MONGODB_URL)
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@cluster0.zyow6tr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
     .then(() => {
         console.log("DB Connected Successfully")
     })
