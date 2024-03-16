@@ -1,15 +1,17 @@
-const { GetUser, Login } = require("./controllers/UserController")
-const { PostQuestion } = require("./controllers/QuestionController")
-const User = require("./models/User");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
+const { GetUser, Login } = require("./controllers/UserController")
+const { PostQuestion } = require("./controllers/QuestionController")
+
+const User = require("./models/User");
+
 const app = express()
 
-const user = "ceo"
-const pass = "kh051346"
+require('dotenv').config()
 
-mongoose.connect(`mongodb+srv://${user}:${pass}@cluster0.zyow6tr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+mongoose.connect(process.env.MONGODB)
     .then(() => {
         console.log("DB Connected Successfully")
     })
