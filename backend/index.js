@@ -1,25 +1,21 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config()
+require("dotenv").config();
 
-const { GetUser, Login } = require("./controllers/UserController")
-const { PostQuestion } = require("./controllers/QuestionController")
+const { connect } = require("./utils/connect");
+const { GetUser, Login } = require("./controllers/UserController");
+const { PostQuestion } = require("./controllers/QuestionController");
 
 const User = require("./models/User");
 
-const app = express()
+const app = express();
 
-mongoose.connect(`mongodb+srv://ceo:kh051346@cluster0.zyow6tr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
-    .then(() => {
-        console.log("DB Connected Successfully")
-    })
-    .catch(() => console.log("Error connection to db"))
+connect();
 
-    app.use(express.json())
-    app.use(cors({
-        origin: '*'
-    }));
+app.use(express.json())
+app.use(cors({
+    origin: '*'
+}));
 
 app.get("/", (req, res) => {
     res.json("Welcome to Se9si API 💘")

@@ -1,68 +1,78 @@
 @import url('https://fonts.cdnfonts.com/css/museo-sans-rounded');
 
 body {
-    margin:0;
-    padding:0;
+  margin: 0;
+  padding: 0;
 }
+
 nav {
-    width: 100%;
-    padding: 1px 0;
-    background-color: #fff4d899;
-    text-align: center;
-    font-size: large;
+  width: 100%;
+  padding: 1px 0;
+  background-color: #fff4d899;
+  text-align: center;
+  font-size: large;
 }
+
 footer {
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 1vh;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 1vh;
 }
+
 .popup {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    backdrop-filter: blur(5px) brightness(0.8);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  backdrop-filter: blur(5px) brightness(0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
 .modal {
-    background: whitesmoke;
-    box-shadow: 0 0 1vh white;
-    padding: 1vh;
-    border-radius: 3vh;
-    height: auto;
-    width: 30vh;
+  background: whitesmoke;
+  box-shadow: 0 0 1vh white;
+  padding: 1vh;
+  border-radius: 3vh;
+  height: auto;
+  width: 30vh;
 }
-.modal > * {
-    margin: 2vh 2vh;
+
+.modal>* {
+  margin: 2vh 2vh;
 }
+
 body {
   background-color: #ffbd2e;
   font-family: 'Museo Sans Rounded', sans-serif;
 }
+
 .ask-container {
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   align-items: center;
-  height: 60vh;
+  height: 83vh;
 }
+
 .checkbox {
   display: flex;
   align-items: center;
 }
+
 .checkbox label {
   font-size: x-small;
 }
+
 .question-box {
   gap: 1vh;
   display: flex;
@@ -76,19 +86,23 @@ body {
   align-content: center;
   justify-content: space-evenly;
 }
-.question-box > div h5 {
+
+.question-box>div h5 {
   margin: 1vh;
 }
-.question-box > div input {
+
+.question-box>div input {
   border-radius: 1vh;
   padding: .6vh;
   border: 1px solid gray;
 }
-.question-box > .top > img {
+
+.question-box>.top>img {
   border-radius: 50%;
   margin: 1vh;
   width: 5vh;
 }
+
 .bottom {
   justify-content: center;
   display: flex;
@@ -96,6 +110,7 @@ body {
   flex-direction: column;
   margin: 1vh 3vh;
 }
+
 .top {
   display: flex;
   align-items: center;
@@ -105,14 +120,17 @@ body {
   border-top-left-radius: 3vh;
   border-top-right-radius: 3vh;
 }
-.top > div {
+
+.top>div {
   padding: 1vh;
   margin: 0vh;
 }
-.top > div > * {
+
+.top>div>* {
   margin: 3px;
   font-size: small;
 }
+
 textarea {
   background: #ffffff55;
   border-radius: 1vh;
@@ -122,6 +140,7 @@ textarea {
   font-size: small;
   resize: none;
 }
+
 button {
   background: #ffffff44;
   padding: 1vh 2vh;
@@ -133,13 +152,16 @@ button {
   font-weight: 600;
   color: white;
 }
+
 body {
   background-color: #ffbd2e;
   font-family: 'Museo Sans Rounded', sans-serif;
 }
+
 .user-page {
   margin: 2vh;
 }
+
 .message {
   background: #ffffff66;
   padding: 1vh;
@@ -149,13 +171,16 @@ body {
   align-items: center;
   justify-content: flex-start;
 }
+
 .message div h4 {
   margin: 0 1vh;
   color: #b47500;
 }
+
 .message div p {
   margin: 1vh;
 }
+
 .message h3 {
   font-size: xx-large;
   padding: 2vh 3vh;
@@ -163,6 +188,7 @@ body {
   background: #ffa50066;
   border-radius: 3vh;
 }
+
 .container {
   background-color: wheat;
   border-radius: 3vh;
@@ -170,9 +196,11 @@ body {
   margin: 1vh 0vh;
   text-align: left;
 }
+
 .container h3 {
   margin: 1vh;
 }
+
 .link {
   background: #ffffff99;
   padding: 1vh;
@@ -181,20 +209,47 @@ body {
   margin: 2vh 0vh;
   box-shadow: 0px 0px 3px white;
 }
-.link h3, .link p {
+
+.link h3,
+.link p {
   margin: 2px;
 }
+
 .link input {
   margin: 1vh;
   border-radius: 1vh;
   padding: 1vh;
   border: 1px solid gray;
-  width: 70%;
+  width: 90%;
 }
+
 .not-found {
   display: flex;
   height: 80vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.start-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 83vh;
+  gap: 1vh;
+}
+
+.start-container>* {
+  margin: 1vh;
+}
+
+.start-container>input {
+  padding: 1.7vh;
+  font-size: large;
+  border: none;
+  border-radius: 3vh;
+  font-family: 'museo sans rounded';
+  font-weight: 500;
 }

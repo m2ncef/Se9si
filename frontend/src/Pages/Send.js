@@ -41,6 +41,7 @@ export default function Page() {
         let data = d;
         document.querySelector("textarea").value = ""
         if (document.querySelector("input[type=text]")) document.querySelector("input[type=text]").value = ""
+        alert("Message sent successfully.")
       })
   }
   return (

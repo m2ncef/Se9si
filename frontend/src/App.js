@@ -2,6 +2,7 @@ import './App.css';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Send from './Pages/Send'
 import User from './Pages/User'
+import Start from './Pages/Start';
 
 function App() {
   return (
@@ -11,11 +12,14 @@ function App() {
       </nav>
       <BrowserRouter>
         <Routes>
-          <Route index path='/' element={<h1>Home</h1>}></Route>
+          <Route path='/' element={<Start />} index></Route>
           <Route path='/send/:id' element={<Send />}></Route>
           <Route path='/user/:id' element={<User />}></Route>
         </Routes>
       </BrowserRouter>
+      <footer>
+        made by moncef
+      </footer>
     </>
   );
 }

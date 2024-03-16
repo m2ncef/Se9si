@@ -10,6 +10,7 @@ export default function Message(props) {
                     <div className='modal'>
                         <h4>{question.name}</h4>
                         <p>{question.question}</p>
+                        <button style={{color:'black', background:'#9f4595'}}>Reveal more data 😈</button>
                     </div>
                 </div>
             )}

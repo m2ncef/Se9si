@@ -7,12 +7,11 @@ const GetUsers = async (req, res) => {
 const GetUser = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.user });
-        if (!user) {
+        if (!(User.exists({ username: req.params.user }))) {
             res.status(404).json("User not found.");
         }
         res.json(user);
     } catch (error) {
-        console.error("Error fetching user:", error);
         res.status(500).json("Internal Server Error");
     }
 }

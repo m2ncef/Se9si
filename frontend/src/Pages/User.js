@@ -10,8 +10,12 @@ export default function Page() {
         async function fetchData(){
             const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/User/${username}`)
             const data = await res.json()
-            setData(data)
             document.title = `Se9si | @${data.username} ✨`
+            if(localStorage.getItem("UserID") !== data._id){
+                document.body.style.display = "none"
+                window.location.href = "/"
+            }
+            setData(data)
         }
         fetchData()
     }, [])
