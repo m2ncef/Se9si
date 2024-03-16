@@ -9,7 +9,6 @@ export default function () {
             const data = await res.json()
             setData(data)
             if (data) {
-                console.log("found")
                 document.querySelector(".start-container > div").innerHTML += '<input type="number" id="pin" maxlength="4" placeholder="Your Pin (eg: 1234)"/>'
                 document.querySelector(".start-container > div > input").value = user
                 document.querySelector(".start-container > button").textContent = "Done!"
@@ -26,23 +25,24 @@ export default function () {
                     }
                 })
             } else {
-                console.log("not found")
                 document.querySelector(".start-container > div").innerHTML += '<input type="number" id="pin" maxlength="4" placeholder="Create a pin (eg: 1234)"/>'
                 document.querySelector(".start-container > div > input").value = user
                 document.querySelector(".start-container > button").textContent = "Done!"
                 document.querySelector(".start-container > button").addEventListener('click', async () => {
                     await fetch(`${process.env.REACT_APP_BACKEND_API}/login`, {
                         method: 'POST',
-                        body: {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
                             username: user,
                             pin: document.querySelector("#pin").value
-                        }
+                        })
                     })
                         .then(r => r.json())
                         .then(data => {
-                            console.log(data)
                             localStorage.setItem("UserID", data._id)
-                            // window.location.href = `/user/${data.username}`
+                            window.location.href = `/user/${data.username}`
                         })
                 })
             }
