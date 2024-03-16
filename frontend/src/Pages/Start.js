@@ -9,7 +9,7 @@ export default function () {
             const data = await res.json()
             setData(data)
             if (data) {
-                document.querySelector(".start-container > div").innerHTML += '<input type="number" id="pin" maxlength="4" placeholder="Your Pin (eg: 1234)"/>'
+                document.querySelector(".start-container > div").innerHTML += '<input type="text" pattern="\d*" id="pin" maxlength="4" placeholder="Your Pin (eg: 1234)"/>'
                 document.querySelector(".start-container > div > input").value = user
                 document.querySelector(".start-container > button").textContent = "Done!"
                 document.querySelector(".start-container > button").addEventListener('click', async () => {
@@ -25,7 +25,7 @@ export default function () {
                     }
                 })
             } else {
-                document.querySelector(".start-container > div").innerHTML += '<input type="number" id="pin" maxlength="4" placeholder="Create a pin (eg: 1234)"/>'
+                document.querySelector(".start-container > div").innerHTML += '<input type="text" pattern="\d*" id="pin" maxlength="4" placeholder="Create a pin (eg: 1234)"/>'
                 document.querySelector(".start-container > div > input").value = user
                 document.querySelector(".start-container > button").textContent = "Done!"
                 document.querySelector(".start-container > button").addEventListener('click', async () => {
