@@ -33,7 +33,18 @@ app.get("/", (req, res) => {
     res.json("Welcome to Se9si API 💘")
 })
 
-app.get("/User/:user", GetUser);
+app.get("/User/:user", async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.user });
+        if (!user) {
+            res.status(404).json("User not found.");
+        }
+        res.json(user);
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        res.status(500).json("Internal Server Error");
+    }
+});
 app.post("/PostQuestion/:user", PostQuestion);
 app.post("/login", Login)
 
