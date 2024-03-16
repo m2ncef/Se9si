@@ -18,7 +18,7 @@ mongoose.connect("mongodb+srv://ceo:kh051346@cluster0.zyow6tr.mongodb.net/?retry
 
     app.use(express.json())
     app.use(cors({
-        origin: 'https://se9si-api.vercel.app/'
+        origin: '*'
     }));
 
 app.get("/", (req, res) => {
