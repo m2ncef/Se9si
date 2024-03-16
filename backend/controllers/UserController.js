@@ -5,9 +5,6 @@ const GetUsers = async (req, res) => {
     res.json(Users)
 }
 const GetUser = async (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     try {
         const user = await User.findOne({ username: req.params.user });
         if (!user) {

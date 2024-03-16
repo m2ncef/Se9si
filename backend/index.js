@@ -16,12 +16,18 @@ mongoose.connect(process.env.MONGODB)
     })
     .catch(() => console.log("Error connection to db"))
 
-    app.use(cors({
-        origin: '*',
-        credentials: true,
-        optionSuccessStatus: 200,
-    }));
 app.use(express.json())
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+});
 
 app.get("/", (req, res) => {
     res.json("Welcome to Se9si API 💘")
