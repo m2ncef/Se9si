@@ -6,11 +6,12 @@ const GetUsers = async (req, res) => {
 }
 const GetUser = async (req, res) => {
     try {
-        const user = await User.findOne({ username: req.params.user });
-        if (!(User.exists({ username: req.params.user }))) {
+        if (User.exists({ username: req.params.user })) {
+            const user = await User.findOne({ username: req.params.user });
+            res.status(200).json(user);
+        } else {
             res.status(404).json("User not found.");
         }
-        res.json(user);
     } catch (error) {
         res.status(500).json("Internal Server Error");
     }
