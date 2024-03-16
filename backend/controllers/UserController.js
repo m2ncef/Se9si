@@ -5,12 +5,16 @@ const GetUsers = async (req, res) => {
     res.json(Users)
 }
 const GetUser = async (req, res) => {
-    if (!(await User.exists({ username: req.params.user }))) {
-        res.status(404).json("User not found.")
-        return
+    try {
+        const user = await User.findOne({ username: req.params.user });
+        if (!user) {
+            return res.status(404).json("User not found.");
+        }
+        return res.json(user);
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        return res.status(500).json("Internal Server Error");
     }
-    const user = await User.findOne({ username: req.params.user })
-    res.json(user)
 }
 const SignUp = async (req, res) => {
     const newUser = new User();
