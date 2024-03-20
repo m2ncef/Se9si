@@ -27,8 +27,8 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  position: absolute;
-  height: 100vh;
+  position: fixed;
+  height: 100%;
   width: 100%;
   backdrop-filter: blur(5px) brightness(0.8);
   display: flex;
@@ -36,7 +36,31 @@ footer {
   justify-content: center;
   align-items: center;
 }
-
+.loader {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(5vh) brightness(0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade 3s infinite;
+}
+@keyframes fade {
+  0%{
+    backdrop-filter: blur(5vh) brightness(.6);
+  }
+  50%{
+    backdrop-filter: blur(5vh) brightness(.8);
+  }
+  100% {
+    backdrop-filter: blur(5vh) brightness(.6);
+  }
+}
 .modal {
   background: whitesmoke;
   box-shadow: 0 0 1vh white;

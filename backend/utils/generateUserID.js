@@ -6,4 +6,4 @@ const generateUserID = () => {
     }
     return pass
 }
-module.exports = {generateUserID}
+module.exports = { generateUserID }

@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import Loader from '../components/Loader'
 
 export default function Page() {
   const params = useParams()
-  const username = params.id
   const [anonymous, setAnonymous] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState([])
   const checkboxHandler = () => {
     setAnonymous(document.querySelector("#anonymous").checked)
   }
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/user/${username}`)
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/user/${params.id}`)
       const data = await res.json()
       document.title = `Se9si | @${data.username} ✨`
       setData(data)
+      setIsLoading(false)
     }
     fetchData();
   }, [])
   async function PostData() {
     var data;
-    await fetch(`${process.env.REACT_APP_BACKEND_API}/PostQuestion/${username}`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_API}/PostQuestion/${params.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -47,6 +49,7 @@ export default function Page() {
   return (
     <>
       <div className='ask-container'>
+        {isLoading && <Loader/>}
         <>
           <div className='question-box'>
             <div className='top'>

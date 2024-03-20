@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import Loader from '../components/Loader'
 
 export default function () {
     const [user, setUser] = useState('')
     const [data, setData] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    useEffect(()=>{
+        let host = window.location.host;
+        let parts = host.split(".");
+        let subdomain = "";
+        if (parts.length >= 4) {
+          subdomain = parts[0];
+          parts.splice(0, 1);
+          window.location.href = `${window.location.protocol}//${parts.join(".")}/${subdomain}`
+        }
+    },[])
     useEffect(() => {
+        setIsLoading(false)
         async function fetchData() {
             const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/user/${user}`)
             const data = await res.json()
@@ -51,6 +64,7 @@ export default function () {
     }, [user])
     return (
         <div className='start-container'>
+            {isLoading && <Loader/>}
             <h2>Choose a username</h2>
             <div>
                 <input type='text' placeholder='moncef' />
