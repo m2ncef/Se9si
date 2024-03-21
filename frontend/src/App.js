@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Send from './Pages/Send'
 import User from './Pages/User'
 import Start from './Pages/Start';
+import Socials from './components/Socials'
 
 function App() {
   return (

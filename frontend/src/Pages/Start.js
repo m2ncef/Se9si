@@ -6,15 +6,10 @@ export default function () {
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     useEffect(()=>{
-        let host = window.location.host;
-        let parts = host.split(".");
-        let subdomain = "";
-        if (parts.length >= 4) {
-          subdomain = parts[0];
-          parts.splice(0, 1);
-          window.location.href = `${window.location.protocol}//${parts.join(".")}/${subdomain}`
+        if(localStorage.getItem("UserID")){
+            window.location.href = `/User/${localStorage.getItem("Username")}`
         }
-    },[])
+    })
     useEffect(() => {
         setIsLoading(false)
         async function fetchData() {
@@ -30,6 +25,7 @@ export default function () {
                         document.querySelector("#pin").style.border = "2px solid green"
                         document.querySelector(".start-container > div > input").style.border = "2px solid green"
                         localStorage.setItem("UserID", data._id)
+                        localStorage.setItem("Username", data.username)
                         window.location.href = `/user/${data.username}`
                     }
                     else {
@@ -55,6 +51,7 @@ export default function () {
                         .then(r => r.json())
                         .then(data => {
                             localStorage.setItem("UserID", data._id)
+                            localStorage.setItem("Username", data.username)
                             window.location.href = `/user/${data.username}`
                         })
                 })

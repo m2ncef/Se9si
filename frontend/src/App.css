@@ -3,12 +3,11 @@
 body {
   margin: 0;
   padding: 0;
+  background: burlywood;
 }
 
 nav {
   width: 100%;
-  padding: 1px 0;
-  background-color: #fff4d899;
   text-align: center;
   font-size: large;
 }
@@ -36,6 +35,7 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
 .loader {
   position: fixed;
   top: 0;
@@ -50,17 +50,21 @@ footer {
   align-items: center;
   animation: fade 3s infinite;
 }
+
 @keyframes fade {
-  0%{
+  0% {
     backdrop-filter: blur(5vh) brightness(.6);
   }
-  50%{
+
+  50% {
     backdrop-filter: blur(5vh) brightness(.8);
   }
+
   100% {
     backdrop-filter: blur(5vh) brightness(.6);
   }
 }
+
 .modal {
   background: whitesmoke;
   box-shadow: 0 0 1vh white;
@@ -72,11 +76,6 @@ footer {
 
 .modal>* {
   margin: 2vh 2vh;
-}
-
-body {
-  background-color: #ffbd2e;
-  font-family: 'Museo Sans Rounded', sans-serif;
 }
 
 .ask-container {
@@ -137,6 +136,7 @@ body {
 
 .top {
   display: flex;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -145,15 +145,13 @@ body {
   border-top-right-radius: 3vh;
 }
 
-.top>div {
-  padding: 1vh;
-  margin: 0vh;
+.top>* {
+  padding: 1vh 0vh;
+  margin: 3px;
+  font-size: 4vw;
+  text-align: left;
 }
 
-.top>div>* {
-  margin: 3px;
-  font-size: small;
-}
 
 textarea {
   background: #ffffff55;
@@ -178,7 +176,6 @@ button {
 }
 
 body {
-  background-color: #ffbd2e;
   font-family: 'Museo Sans Rounded', sans-serif;
 }
 
@@ -231,7 +228,6 @@ body {
   border-radius: 3vh;
   text-align: center;
   margin: 2vh 0vh;
-  box-shadow: 0px 0px 3px white;
 }
 
 .link h3,
@@ -269,7 +265,7 @@ body {
   margin: 1vh;
 }
 
-.start-container> div {
+.start-container>div {
   display: flex;
   flex-direction: column;
 }
@@ -281,4 +277,22 @@ body {
   border-radius: 3vh;
   font-family: 'museo sans rounded';
   font-weight: 500;
+}
+.socials {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(260deg, orange, orangered);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+.socials > div > * {
+  margin: 0;
 }
