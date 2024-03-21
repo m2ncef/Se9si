@@ -19,9 +19,6 @@ function App() {
           <Route path='*' element={<h1>Page not found</h1>}></Route>
         </Routes>
       </BrowserRouter>
-      <footer>
-        made by moncef
-      </footer>
     </>
   );
 }

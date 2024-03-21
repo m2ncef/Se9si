@@ -49,10 +49,10 @@ export default function Page() {
   return (
     <>
       <div className='ask-container'>
-        {isLoading && <Loader/>}
+        {isLoading && <Loader />}
         <>
           <div className='question-box'>
-            <div className='top'>
+            <div className='top' style={{ flexDirection: 'row' }}>
               <img src='https://ngl.link/images/default_avatar.png'></img>
               <div>
                 <p>@{data.username}</p>
@@ -67,11 +67,12 @@ export default function Page() {
               {!anonymous && (
                 <input type='text' placeholder='your name..' />
               )}
-              <textarea id='question' rows="3" placeholder={`ask me`}></textarea>
+              <textarea id='question' rows="3" placeholder={`Write your question here`}></textarea>
             </div>
           </div>
           <button onClick={() => PostData()} className='btn'>send</button>
         </>
+        <button className='make-your-own'>make your own</button>
       </div>
     </>
   )

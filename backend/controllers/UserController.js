@@ -32,8 +32,8 @@ const SignUp = async (req, res) => {
     newUser.pin = req.body.pin;
     newUser.questions = [
         {
-            name: "Se9si 💘",
-            question: "You will receive all your questions in this section."
+            name: "moncef 👨🏻‍💻",
+            question: "hi, you will receive all your questions in this section. ENJOY 🚨❗️"
         }
     ]
     await newUser.save()

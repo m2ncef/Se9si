@@ -10,7 +10,6 @@ export default function Socials(props) {
         </div>
         <div className='question-box'>
               <div className='top'>
-                  <p>@{props.name ? props.name : 'unknown'}</p>
                   <h4>ask me a question</h4>
               </div>
               <div className='bottom'>
