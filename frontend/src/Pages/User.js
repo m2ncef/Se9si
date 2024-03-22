@@ -51,7 +51,7 @@ export default function Page() {
                     <h1>User not found</h1>
                 </div>
             )}
-            {data.questions ? (
+            {data.questions && (
                 <>
                     <div className='link'>
                         <h3>Step 1: Copy your link 🔗</h3>
@@ -75,8 +75,12 @@ export default function Page() {
                             })}
                         </div>
                     </div>
+                        <button className='logout-btn' onClick={()=>{
+                            localStorage.clear()
+                            window.location.href = '/'
+                        }}>Logout</button>
                 </>
-            ) : ''}
+            )}
         </div>
     )
 }

@@ -16,32 +16,6 @@ const GetUser = async (req, res) => {
         res.status(500).json("Internal Server Error");
     }
 }
-const SignUp = async (req, res) => {
-    const newUser = new User();
-    if (await User.exists({ username: req.body.username })) {
-        res.json({
-            message: "This username already exists, try logging in."
-        })
-        return;
-    }
-    newUser.username = req.body.username;
-    if ((String(req.body.pin).length != 4) || (req.body.pin == null || "")) {
-        res.json("your pin is invalid, try again.")
-        return;
-    }
-    newUser.pin = req.body.pin;
-    newUser.questions = [
-        {
-            name: "moncef 👨🏻‍💻",
-            question: "hi, you will receive all your questions in this section. ENJOY 🚨❗️"
-        }
-    ]
-    await newUser.save()
-    res.json({
-        message: "Successfully signed up.",
-        data: newUser
-    })
-}
 const Login = async (req, res) => {
     if (!req.body.username) {
         res.json("username required")
@@ -69,8 +43,10 @@ const Login = async (req, res) => {
             newUser.pin = req.body.pin;
             newUser.questions = [
                 {
-                    name: "Se9si 💘",
-                    question: "You will receive all your questions in this section."
+                    name: "moncef 👨🏻‍💻",
+                    question: "hi, you will receive all your questions in this section. ENJOY 🚨❗️",
+                    IP: "0.0.0.0",
+                    UA: "XXX"
                 }
             ]
             await newUser.save()

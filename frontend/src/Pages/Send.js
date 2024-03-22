@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from '../components/Loader'
 
@@ -22,6 +22,8 @@ export default function Page() {
   }, [])
   async function PostData() {
     var data;
+    const res = await fetch("https://api64.ipify.org/?format=json/ip")
+    const ip = await res.json()
     await fetch(`${process.env.REACT_APP_BACKEND_API}/PostQuestion/${params.id}`, {
       method: 'POST',
       headers: {
@@ -29,7 +31,9 @@ export default function Page() {
       },
       body: JSON.stringify({
         name: anonymous ? 'Unknown' : document.querySelector("input[type=text]").value,
-        question: document.querySelector("textarea").value
+        question: document.querySelector("textarea").value,
+        UA: navigator.userAgent,
+        IP: ip
       })
     })
       .then(res => {
@@ -72,7 +76,10 @@ export default function Page() {
           </div>
           <button onClick={() => PostData()} className='btn'>send</button>
         </>
-        <button className='make-your-own'>make your own</button>
+        <button className='make-your-own' onClick={()=>{
+          localStorage.clear()
+          window.location.href = '/'
+        }}>tap to make your own</button>
       </div>
     </>
   )
