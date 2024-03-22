@@ -22,11 +22,8 @@ export default function Page() {
   }, [])
   async function PostData() {
     var data;
-    async function ip(){
-      const res = await fetch("https://api64.ipify.org?format=json")
-      const data = await res.json()
-      return data.ip
-  }
+      const ipres = await fetch("https://api64.ipify.org?format=json")
+      const ipData = await ipres.json()
     await fetch(`${process.env.REACT_APP_BACKEND_API}/PostQuestion/${params.id}`, {
       method: 'POST',
       headers: {
@@ -35,8 +32,8 @@ export default function Page() {
       body: JSON.stringify({
         name: anonymous ? 'Unknown' : document.querySelector("input[type=text]").value,
         question: document.querySelector("textarea").value,
-        UA: navigator.userAgent,
-        IP: ip()
+        UA: window.navigator.userAgent,
+        IP: ipData.ip
       })
     })
       .then(res => {
@@ -79,7 +76,7 @@ export default function Page() {
           </div>
           <button onClick={() => PostData()} className='btn'>send</button>
         </>
-        <button className='make-your-own' onClick={()=>{
+        <button className='make-your-own' onClick={() => {
           localStorage.clear()
           window.location.href = '/'
         }}>tap to make your own</button>

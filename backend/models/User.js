@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
         time: Number,
         opened: Boolean,
         IP: String,
-        UI: String
+        UA: String
     }],
     username: String,
     pin: Number
