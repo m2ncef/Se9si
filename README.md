@@ -1,5 +1,5 @@
 # Se9si
-Receive questions from your friends anonymously (or not) 🥰. [Check the demo](https://se9si.vercel.app)!
+Receive questions from your friends anonymously (or not) 🥰. [Check the demo](https://se9si.vercel.app)
 
 ## Technologies Used
 ### Frontend
