@@ -22,8 +22,11 @@ export default function Page() {
   }, [])
   async function PostData() {
     var data;
-    const res = await fetch("https://api64.ipify.org/?format=json/ip")
-    const ip = await res.json()
+    async function ip(){
+      const res = await fetch("https://api64.ipify.org?format=json")
+      const data = await res.json()
+      return data.ip
+  }
     await fetch(`${process.env.REACT_APP_BACKEND_API}/PostQuestion/${params.id}`, {
       method: 'POST',
       headers: {
@@ -33,7 +36,7 @@ export default function Page() {
         name: anonymous ? 'Unknown' : document.querySelector("input[type=text]").value,
         question: document.querySelector("textarea").value,
         UA: navigator.userAgent,
-        IP: ip
+        IP: ip()
       })
     })
       .then(res => {

@@ -9,6 +9,8 @@ const PostQuestion = async (req, res) => {
     user.questions = user.questions.concat({
         name: req.body.name,
         question: req.body.question,
+        IP: req.body.IP,
+        UA: req.body.UA,
         time: new Date().getTime(),
         opened: false
     })
