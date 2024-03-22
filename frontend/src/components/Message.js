@@ -25,12 +25,12 @@ export default function Message(props) {
                         <p>{question.question}</p>
                         {!isReveal && <button style={{ color: 'black', background: '#9f4595' }} onClick={revealMore}>Reveal more data 😈</button>}
                         {isReveal && (
-                            <>
-                                <p>IP: {question.IP}</p>
-                                <p>User Agent: {question.UA}</p>
-                                <p>City: {data.region} - {data.city}</p>
-                                <p>Country: {data.country}</p>
-                            </>
+                            <div>
+                                <p><b><i>IP: </i></b> {question.IP}</p>
+                                <p><b><i>User Agent: </i></b> {question.UA}</p>
+                                <p><b><i>City: </i></b> {data.region} - {data.city}</p>
+                                <p><b><i>Country: </i></b> {data.country}</p>
+                            </div>
                         )}
                     </div>
                 </div>

@@ -35,13 +35,15 @@ footer {
   justify-content: center;
   align-items: center;
 }
-.popup > p {
+
+.popup>p {
   position: absolute;
   margin: 2vh;
   right: 0;
   top: 0;
   font-size: xx-large;
 }
+
 .loader {
   position: fixed;
   top: 0;
@@ -57,12 +59,21 @@ footer {
   animation: fade 3s infinite;
   z-index: 9999;
 }
+
 .logout-btn {
   color: red;
   border: 2px solid red;
   background: #ff000033;
   width: -webkit-fill-available;
 }
+
+.modal>div {
+  font-size: 12px;
+  border-radius: 2vh;
+  border: 1px solid gainsboro;
+  padding: 1vh;
+}
+
 @keyframes fade {
   0% {
     backdrop-filter: blur(5vh) brightness(.6);
@@ -163,7 +174,8 @@ footer {
   font-size: 4vw;
   text-align: left;
 }
-.top > div > * {
+
+.top>div>* {
   margin: 0;
 }
 
@@ -292,6 +304,7 @@ body {
   font-family: 'museo sans rounded';
   font-weight: 500;
 }
+
 .socials {
   position: fixed;
   top: 0;
@@ -307,23 +320,28 @@ body {
   align-items: center;
   text-align: center;
 }
-.socials > div > * {
+
+.socials>div>* {
   margin: 0;
 }
+
 .make-your-own {
   animation: btnAnimation 2s infinite;
   position: absolute;
   bottom: 3vh;
   font-size: larger;
 }
+
 @keyframes btnAnimation {
   0% {
     padding: 1vh 2vh;
-  } 
+  }
+
   50% {
     padding: 1.3vh 2.3vh;
     box-shadow: 0 0 1vh white;
   }
+
   100% {
     padding: 1vh 2vh;
   }
