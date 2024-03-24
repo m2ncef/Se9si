@@ -8,7 +8,6 @@ export default function Message(props) {
     const revealMore = () => {
         setIsReveal(true)
         async function fetchData(){
-            console.log(process.env.REACT_APP_IPINFO_KEY)
             const res = await fetch(`https://ipinfo.io/${question.IP}/json?token=${process.env.REACT_APP_IPINFO_KEY}`)
             const data = await res.json()
             setData(data)
