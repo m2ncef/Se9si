@@ -2,11 +2,13 @@
 Receive questions from your friends anonymously (or not) 🥰. [Check the demo](https://se9si.vercel.app)
 
 ## Preview
-![Start_Page](https://i.imgur.com/eriUwE1.png)
-![Dashboard](https://i.imgur.com/M07gUr8.png)
-![Question_Preview](https://i.imgur.com/BQ3ken5.png)
-![Share_To_Socials](https://i.imgur.com/E0mBsG2.png)
-![Ask_Page](https://i.imgur.com/OnFJDWk.png)
+<p align="center">
+  <img src="https://i.imgur.com/eriUwE1.png" alt="Start_Page" style="width: 20%;" />
+  <img src="https://i.imgur.com/M07gUr8.png" alt="Dashboard" style="width: 20%;" />
+  <img src="https://i.imgur.com/BQ3ken5.png" alt="Question_Preview" style="width: 20%;" />
+  <img src="https://i.imgur.com/E0mBsG2.png" alt="Share_To_Socials" style="width: 20%;" />
+  <img src="https://i.imgur.com/OnFJDWk.png" alt="Ask_Page" style="width: 20%;" />
+</p>
 
 ## Technologies Used
 ### Frontend
