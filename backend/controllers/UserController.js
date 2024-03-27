@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt")
 const User = require('../models/User')
 const { generateUserID } = require("../utils/generateUserID")
 const GetUsers = async (req, res) => {
@@ -36,11 +37,12 @@ const Login = async (req, res) => {
             } else {
                 newUser.username = req.body.username;
             }
-            if ((String(req.body.pin).length != 4) || (req.body.pin == null || "")) {
+            if ((String(req.body.pin).length != 4) || (req.body.pin == null)) {
                 res.json("your pin is invalid, try again.")
                 return;
             }
-            newUser.pin = req.body.pin;
+            const hashedPin = await bcrypt.hash(req.body.pin, 10)
+            newUser.pin = hashedPin;
             newUser.questions = [
                 {
                     name: "moncef 👨🏻‍💻",
@@ -54,7 +56,8 @@ const Login = async (req, res) => {
             return
         }
         // LOGIN !!
-        if (req.body.pin == client.pin) {
+        const match = bcrypt.compare(req.body.pin, client.pin)
+        if (match) {
             res.json(client)
         } else {
             res.json("wrong credentials, try again")

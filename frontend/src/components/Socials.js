@@ -31,7 +31,7 @@ export default function Socials(props) {
         </div>
         <div>
           <h5>Se9si</h5>
-          <p style={{ fontWeight: 300 }}>se9si.vercel.app/{props.name}</p>
+          <p style={{ fontWeight: 300 }}>{String(window.location.origin).split("//")[1]}/{props.name}</p>
         </div>
       </div>
     )

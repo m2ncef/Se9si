@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
 
 const { connect } = require("./utils/connect");
 const { GetUser, Login } = require("./controllers/UserController");
