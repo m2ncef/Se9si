@@ -18,36 +18,32 @@ const GetUser = async (req, res) => {
     }
 }
 const Login = async (req, res) => {
-    if (!req.body.username) {
-        res.json("username required")
-        return
-    }
-    else if (!req.body.pin) {
-        res.json("pin required")
-        return
+    const {username, pin} = req.body
+    if (!username || !pin) {
+        return res.status(400).json({ error: "Username and pin are required." });
     }
     else {
-        const client = await User.findOne({ username: req.body.username })
+        const client = await User.findOne({ username: username })
         if (!client) {
             // SIGNING THE USER UP !!
             const newUser = new User();
-            if (req.body.username.includes(" ")) {
+            if (username.includes(" ")) {
                 res.status(400).json("space detected")
                 return
             } else {
-                newUser.username = req.body.username;
+                newUser.username = username;
             }
-            if ((String(req.body.pin).length != 4) || (req.body.pin == null)) {
+            if ((String(pin).length != 4) || (pin == null)) {
                 res.json("your pin is invalid, try again.")
                 return;
             }
-            const hashedPin = await bcrypt.hash(req.body.pin, 10)
+            const hashedPin = await bcrypt.hash(String(pin), 10)
             newUser.pin = hashedPin;
             newUser.questions = [
                 {
                     name: "moncef 👨🏻‍💻",
                     question: "hi, you will receive all your questions in this section. ENJOY 🚨❗️",
-                    IP: "0.0.0.0",
+                    IP: "44.188.144.0",
                     UA: "XXX"
                 }
             ]
@@ -56,7 +52,7 @@ const Login = async (req, res) => {
             return
         }
         // LOGIN !!
-        const match = await bcrypt.compare(req.body.pin, client.pin)
+        const match = await bcrypt.compare(String(pin), client.pin)
         if (match) {
             res.json(client)
         } else {
