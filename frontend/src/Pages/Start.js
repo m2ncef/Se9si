@@ -22,7 +22,7 @@ export default function () {
                 document.querySelector(".start-container > div > input").value = user
                 document.querySelector(".start-container > button").textContent = "Done!"
                 document.querySelector(".start-container > button").addEventListener('click', async () => {
-                    if (bcrypt.hashSync(document.querySelector("#pin").value, 10) == data.pin) {
+                    if (document.querySelector("#pin").value == data.pin) {
                         document.querySelector("#pin").style.border = "2px solid green"
                         document.querySelector(".start-container > div > input").style.border = "2px solid green"
                         localStorage.setItem("UserID", data._id)
@@ -46,7 +46,7 @@ export default function () {
                         },
                         body: JSON.stringify({
                             username: user,
-                            pin: bcrypt.hashSync(document.querySelector("#pin").value, 10)
+                            pin: document.querySelector("#pin").value
                         })
                     })
                         .then(r => r.json())
