@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Loader from '../components/Loader'
+import bcrypt from 'bcryptjs'
 
 export default function () {
     const [user, setUser] = useState('')
@@ -21,7 +22,7 @@ export default function () {
                 document.querySelector(".start-container > div > input").value = user
                 document.querySelector(".start-container > button").textContent = "Done!"
                 document.querySelector(".start-container > button").addEventListener('click', async () => {
-                    if (document.querySelector("#pin").value == data.pin) {
+                    if (bcrypt.hashSync(document.querySelector("#pin").value, 10) == data.pin) {
                         document.querySelector("#pin").style.border = "2px solid green"
                         document.querySelector(".start-container > div > input").style.border = "2px solid green"
                         localStorage.setItem("UserID", data._id)
@@ -45,7 +46,7 @@ export default function () {
                         },
                         body: JSON.stringify({
                             username: user,
-                            pin: document.querySelector("#pin").value
+                            pin: bcrypt.hashSync(document.querySelector("#pin").value, 10)
                         })
                     })
                         .then(r => r.json())

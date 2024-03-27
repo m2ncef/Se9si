@@ -56,7 +56,7 @@ const Login = async (req, res) => {
             return
         }
         // LOGIN !!
-        const match = bcrypt.compare(req.body.pin, client.pin)
+        const match = await bcrypt.compare(req.body.pin, client.pin)
         if (match) {
             res.json(client)
         } else {
