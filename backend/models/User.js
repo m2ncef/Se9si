@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
         UA: String
     }],
     username: String,
-    pin: Number
+    pin: String
 })
 
 const User = mongoose.model("User", UserSchema)
