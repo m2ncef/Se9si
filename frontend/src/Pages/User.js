@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -41,7 +41,7 @@ export default function Page() {
             setIsLoading(false)
         }
         fetchData()
-    }, [])
+    }, [username])
     return (
         <div className='user-page'>
             {socials && <Socials name={data.username} />}

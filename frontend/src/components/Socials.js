@@ -1,19 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 export default function Socials(props) {
-  useEffect(() => {
-    async function fetchProfilePic() {
-      const res = await fetch(`https://snapinst.com/api/ig/userInfoByUsername/${props.name}`, {
-        headers: {
-          "User-Agent": "PostmanRuntime/7.37.0"
-        }
-      })
-      const data = await res.json()
-      const picURL = data.result.user.hd_profile_pic_url_info.url
-      console.log(picURL)
-    }
-    fetchProfilePic()
-  }, [])
   if (props.name) {
     return (
       <div className='socials'>

@@ -4,8 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function () {
     const [user, setUser] = useState('')
-    const [data, setData] = useState([])
+    const [btnIsLoading, setBtnIsLoading] = useState(false)
     const signup = async () => {
+      setBtnIsLoading(true)
         await fetch(`${process.env.REACT_APP_BACKEND_API}/login`, {
             method: 'POST',
             headers: {
@@ -17,17 +18,21 @@ export default function () {
             })
         })
             .then(r => {
+              setBtnIsLoading(false)
               if(!r.ok){
                 console.log("Authentification failed, try again.")
               }
               return r.json()
             })
             .then(data => {
+              setBtnIsLoading(false)
                 if(data.username){
                   toast(`hi ${data.username} 💘 welcome back ✨`)
                   localStorage.setItem("UserID", data._id)
                   localStorage.setItem("Username", data.username)
-                  window.location.href = `/user/${data.username}`
+                  setTimeout(()=>{
+                    window.location.href = `/user/${data.username}`
+                  }, 1500)
                 } else {
                   toast(data.message)
                 }
@@ -58,9 +63,9 @@ export default function () {
         <h2>Choose a username</h2>
             <div>
                 <input onChange={(e)=>setUser(e.target.value)} type='text' placeholder='moncef'/>
-                {data ? (<input type="tel" pattern="\d*" id="pin" maxlength="4" placeholder="Your Pin (eg: 1234)" />) : (<input type="tel" pattern="\d*" id="pin" maxlength="4" placeholder="Create a pin (eg: 1234)" />)}
+                <input type="tel" pattern="\d*" id="pin" maxLength="4" placeholder="Your Pin (eg: 1234)" />
             </div>
-            <button onClick={()=>signup()}>Done</button>
+            <button className={btnIsLoading && 'sending'} onClick={()=>signup()}>Done</button>
         </div>
     )
 }
