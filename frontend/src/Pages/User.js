@@ -34,8 +34,8 @@ export default function Page() {
             const data = await res.json()
             document.title = `Se9si | @${username} ✨`
             if (localStorage.getItem("UserID") !== data?._id) {
-                // document.body.style.display = "none"
-                // window.location.href = "/"
+                document.body.style.display = "none"
+                window.location.href = "/"
             }
             setData(data)
             setIsLoading(false)

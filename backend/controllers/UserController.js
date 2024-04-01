@@ -1,11 +1,5 @@
 const bcrypt = require("bcrypt")
 const User = require('../models/User')
-const { generateUserID } = require("../utils/generateUserID")
-const signUser = require("../utils/signUser")
-const GetUsers = async (req, res) => {
-    const Users = await User.find()
-    res.json(Users)
-}
 const GetUser = async (req, res) => {
     try {
         if (User.exists({ username: req.params.user })) {
@@ -50,10 +44,6 @@ const Login = async (req, res) => {
         // LOGIN
         const match = await bcrypt.compare(String(pin), client.pin)
         if (match) {
-            res.cookie('token', signUser(JSON.stringify(client)), {
-              sameSite: 'None',
-              secure: true
-            })
             return res.json(client);
         } else {
             res.json({message:"wrong credentials, try again"})

@@ -168,6 +168,11 @@ footer {
   border-top-right-radius: 3vh;
 }
 
+.sending {
+    pointer-events: none;
+    filter: opacity(0.5);
+}
+
 .top>* {
   padding: 1vh 0vh;
   margin: 3px;

@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../components/Loader'
 
 export default function Page() {
@@ -7,6 +8,7 @@ export default function Page() {
   const [anonymous, setAnonymous] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState([])
+  const [isSending, setIsSending] = useState(false)
   const checkboxHandler = () => {
     setAnonymous(document.querySelector("#anonymous").checked)
   }
@@ -21,6 +23,7 @@ export default function Page() {
     fetchData();
   }, [])
   async function PostData() {
+    setIsSending(true)
     var data;
       const ipres = await fetch("https://api64.ipify.org?format=json")
       const ipData = await ipres.json()
@@ -38,20 +41,34 @@ export default function Page() {
     })
       .then(res => {
         if (!res.ok) {
-          alert("Message not sent.")
+          toast('Message not sent, try again.')
+          setIsSending(false)
           return
         }
         res.json()
       })
       .then(d => {
+        toast('Message sent ✨')
         let data = d;
         document.querySelector("textarea").value = ""
         if (document.querySelector("input[type=text]")) document.querySelector("input[type=text]").value = ""
-        alert("Message sent successfully.")
+        setIsSending(false)
       })
   }
   return (
     <>
+      <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss={false}
+      draggable
+      pauseOnHover={false}
+      theme="dark"
+      />
       <div className='ask-container'>
         {isLoading && <Loader />}
         <>
@@ -74,7 +91,7 @@ export default function Page() {
               <textarea id='question' rows="3" placeholder={`Write your question here`}></textarea>
             </div>
           </div>
-          <button onClick={() => PostData()} className='btn'>send</button>
+          <button onClick={() => PostData()} className={`btn ${isSending ? 'sending' : ''}`}>send</button>
         </>
         <button className='make-your-own' onClick={() => {
           localStorage.clear()
