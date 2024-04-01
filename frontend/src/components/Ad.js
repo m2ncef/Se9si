@@ -21,6 +21,5 @@ export default function Banner() {
             banner.current.append(script)
         }
     }, [banner])
-
     return <div ref={banner}></div>
 }

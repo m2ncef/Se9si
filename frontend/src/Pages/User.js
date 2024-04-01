@@ -30,12 +30,12 @@ export default function Page() {
 
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/User/${username}`)
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/user/${username}`)
             const data = await res.json()
             document.title = `Se9si | @${username} ✨`
             if (localStorage.getItem("UserID") !== data?._id) {
-                document.body.style.display = "none"
-                window.location.href = "/"
+                // document.body.style.display = "none"
+                // window.location.href = "/"
             }
             setData(data)
             setIsLoading(false)
