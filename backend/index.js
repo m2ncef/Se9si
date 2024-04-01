@@ -1,5 +1,4 @@
 const express = require("express");
-const cors = require("cors")
 
 const auth = require("./middleware/auth")
 const { connect } = require("./utils/connect");
@@ -11,11 +10,11 @@ const app = express();
 connect();
 
 app.use(express.json())
-app.use(cors({
-  origin: '*',
-  credentials: true,
-  exposedHeaders: ["set-cookie"],
-}));
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+})
 
 app.get("/", (req, res) => {
     res.json("Welcome to Se9si API 💘")
