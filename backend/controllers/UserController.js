@@ -18,10 +18,13 @@ const Login = async (req, res) => {
         return res.status(400).json({ message: "Username and pin are required." });
     }
     if ((String(pin).length != 4) || (pin == null)) {
-        return res.status(400).json({message:"your pin is invalid, try again."})
+        return res.status(400).json({message:"Your pin is invalid, try again."})
     }
     if (username.includes(" ")) {
-        return res.status(400).json({message:"space in username detected"})
+        return res.status(400).json({message:"Space detected in username."})
+    }
+    if(String(username).length < 5) {
+        return res.status(400).json({message:"Your username is too short."})
     }
     else {
         const client = await User.findOne({username})

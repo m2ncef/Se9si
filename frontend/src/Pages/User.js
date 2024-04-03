@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast';
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Socials from '../components/Socials'
@@ -30,20 +31,27 @@ export default function Page() {
 
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/user/${username}`)
-            const data = await res.json()
-            document.title = `Se9si | @${username} ✨`
-            if (localStorage.getItem("UserID") !== data?._id) {
-                document.body.style.display = "none"
-                window.location.href = "/"
+            try {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_API}/user/${username}`)
+                const data = await res.json()
+                document.title = `Se9si | @${username} ✨`
+                if (localStorage.getItem("UserID") !== data?._id) {
+                    document.body.style.display = "none"
+                    window.location.href = "/"
+                }
+                setData(data)
+                setIsLoading(false)
             }
-            setData(data)
-            setIsLoading(false)
+            catch (err){
+                toast.error("Fetching data failed. ")
+                setIsLoading(false)
+            }
         }
         fetchData()
     }, [username])
     return (
         <div className='user-page'>
+            <Toaster />
             {socials && <Socials name={data.username} />}
             {isLoading && <Loader />}
             {data.username ? (<h2 style={{ textAlign: 'center' }}>Welcome back {data.username} 💘</h2>) : (
@@ -75,10 +83,13 @@ export default function Page() {
                             })}
                         </div>
                     </div>
-                        <button className='logout-btn' onClick={()=>{
+                    <button className='logout-btn' onClick={() => {
+                        toast.success("Successfully logged out.")
+                        setTimeout(() => {
                             localStorage.clear()
                             window.location.href = '/'
-                        }}>Logout</button>
+                        }, 2000);
+                    }}>Logout</button>
                 </>
             )}
         </div>

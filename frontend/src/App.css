@@ -288,6 +288,8 @@ body {
   padding: 1vh;
   border: 1px solid gray;
   width: 90%;
+  font-family: 'museo sans rounded';
+  font-weight: 700;
 }
 
 .not-found {

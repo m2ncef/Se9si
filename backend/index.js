@@ -11,7 +11,7 @@ connect();
 
 app.use(express.json())
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "se9si.vercel.app");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 })
@@ -23,6 +23,6 @@ app.get("/User/:user", auth, GetUser);
 app.post("/PostQuestion/:user", PostQuestion);
 app.post("/login", Login)
 
-app.listen(3001, () => {
-    console.log('Server running at port 3001')
+app.listen(9999, () => {
+    console.log('Server running')
 })
